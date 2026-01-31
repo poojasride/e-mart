@@ -4,18 +4,37 @@ const CartItem = ({ item }) => {
   const { increaseQty, decreaseQty, removeFromCart } = useCart();
 
   return (
-    <div className="cart-item">
-      <h4>{item.title}</h4>
-      <p>Price: ₹ {item.price}</p>
-      <p>Quantity: {item.quantity}</p>
+    <div className="flex justify-between items-center bg-[#F8FAFC] p-4 rounded-lg shadow">
+      <div>
+        <h4 className="font-semibold">{item.title}</h4>
+        <p>₹ {item.price}</p>
+        <p>Total: ₹ {item.price * item.quantity}</p>
+      </div>
 
-      <button onClick={() => increaseQty(item.id)}>+</button>
-      <button onClick={() => decreaseQty(item.id)}>-</button>
-      <button onClick={() => removeFromCart(item.id)}>
-        Remove
-      </button>
+      <div className="flex items-center gap-3">
+        <button
+          onClick={() => decreaseQty(item.id)}
+          className="px-3 py-1 bg-gray-300 rounded"
+        >
+          -
+        </button>
 
-      <p>Total: ₹ {item.price * item.quantity}</p>
+        <span>{item.quantity}</span>
+
+        <button
+          onClick={() => increaseQty(item.id)}
+          className="px-3 py-1 bg-gray-300 rounded"
+        >
+          +
+        </button>
+
+        <button
+          onClick={() => removeFromCart(item.id)}
+          className="ml-3 text-red-600 hover:underline"
+        >
+          Remove
+        </button>
+      </div>
     </div>
   );
 };

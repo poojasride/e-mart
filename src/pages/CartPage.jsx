@@ -13,16 +13,34 @@ const CartPage = () => {
   const finalPrice = totalPrice - discount;
 
   return (
-    <div>
-      <h2>Cart</h2>
+    <div className="p-6 max-w-4xl mx-auto">
+      <h2 className="text-2xl font-bold mb-6 text-center">
+        Shopping Cart
+      </h2>
 
-      {cart.map((item) => (
-        <CartItem key={item.id} item={item} />
-      ))}
+      {cart.length === 0 ? (
+        <p className="text-center text-gray-500">
+          Cart is empty
+        </p>
+      ) : (
+        <>
+          <div className="space-y-4">
+            {cart.map((item) => (
+              <CartItem key={item.id} item={item} />
+            ))}
+          </div>
 
-      <h3>Total: ₹ {totalPrice.toFixed(2)}</h3>
-      <h3>Discount (10%): ₹ {discount.toFixed(2)}</h3>
-      <h2>Final Price: ₹ {finalPrice.toFixed(2)}</h2>
+          <div className="mt-8 bg-gray-100 p-4 rounded-lg">
+            <p>Total: ₹ {totalPrice.toFixed(2)}</p>
+            <p className="text-green-600">
+              Discount (10%): ₹ {discount.toFixed(2)}
+            </p>
+            <h3 className="text-xl font-bold mt-2">
+              Final Price: ₹ {finalPrice.toFixed(2)}
+            </h3>
+          </div>
+        </>
+      )}
     </div>
   );
 };
