@@ -26,7 +26,7 @@ function Navbar() {
         </div>
 
         {/* Desktop Menu */}
-        <ul className="hidden lg:flex gap-6 text-lg font-medium items-center">
+        <ul className="hidden md:flex gap-6 text-lg font-medium items-center">
           <li>
             <NavLink to="/" end className={navLinkClass}>
               Home
@@ -51,7 +51,7 @@ function Navbar() {
 
         {/* Right Actions */}
         <div className=" flex items-center gap-4">
-          <button className="px-4 py-2 text-sm font-medium border border-[#4F46E5] text-[#4F46E5] rounded-lg hover:bg-[#4F46E5] hover:text-white transition">
+          <button className="md:hidden lg:flex px-4 py-2 text-sm font-medium border border-[#4F46E5] text-[#4F46E5] rounded-lg hover:bg-[#4F46E5] hover:text-white transition">
             Login
           </button>
 
@@ -71,7 +71,7 @@ function Navbar() {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setOpen(!open)}
-          className="lg:hidden text-[#4F46E5] p-2 rounded-md border border-[#4F46E5]"
+          className="md:hidden text-[#4F46E5] p-2 rounded-md border border-[#4F46E5]"
         >
           {open ? (
             <svg
