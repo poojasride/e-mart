@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { NavLink, Link } from "react-router-dom";
+import { useCart } from "../context/CartContext";
 
 function Navbar() {
   const [open, setOpen] = useState(false);
+  const { cart } = useCart();
 
   const navLinkClass = ({ isActive }) =>
     `block px-4 py-2 rounded-lg transition border border-[#4F46E5] ${
@@ -48,16 +50,21 @@ function Navbar() {
         </ul>
 
         {/* Right Actions */}
-        <div className="hidden lg:flex items-center gap-4">
+        <div className=" flex items-center gap-4">
           <button className="px-4 py-2 text-sm font-medium border border-[#4F46E5] text-[#4F46E5] rounded-lg hover:bg-[#4F46E5] hover:text-white transition">
             Login
           </button>
 
           <Link
             to="/cart"
-            className="bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#3730A3] transition shadow-sm"
+            className="bg-[#4F46E5] text-white px-4 py-2 rounded-lg hover:bg-[#3730A3] transition shadow-sm relative"
           >
             Cart
+             {cart.length > 0 && (
+              <span className="absolute -top-2 -right-2 bg-red-500 text-white text-xs w-5 h-5 flex items-center justify-center rounded-full">
+                {cart.length}
+              </span>
+            )}
           </Link>
         </div>
 
@@ -101,7 +108,7 @@ function Navbar() {
 
         {/* Mobile Dropdown */}
         {open && (
-          <div className="lg:hidden absolute right-6 top-20 w-44 bg-white border border-[#E5E7EB] rounded-xl shadow-xl overflow-hidden z-50">
+          <div className="lg:hidden absolute right-6 top-20 w-44 p-1 bg-white border border-[#E5E7EB] rounded-xl shadow-xl overflow-hidden z-50">
             <NavLink onClick={() => setOpen(false)} to="/" end className={navLinkClass}>
               Home
             </NavLink>
